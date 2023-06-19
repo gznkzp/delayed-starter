@@ -1,0 +1,58 @@
+{
+  "properties": [
+    {
+      "name": "delay.cache.open",
+      "type": "java.lang.Boolean",
+      "description": "是否开启持久化",
+      "defaultValue": false
+    },
+    {
+      "name": "delay.cache.store",
+      "type": "java.lang.String",
+      "description": "持久化目录",
+      "defaultValue": ""
+    },
+    {
+      "name": "delay.thread.open",
+      "type": "java.lang.Boolean",
+      "description": "是否开启多线程",
+      "defaultValue": false
+    },
+    {
+      "name": "delay.thread.core-pool-size",
+      "type": "java.lang.Integer",
+      "description": "核心线程数",
+      "defaultValue": "CPU核心数*2"
+    },
+    {
+      "name": "delay.thread.max-pool-size",
+      "type": "java.lang.Integer",
+      "description": "最大线程数",
+      "defaultValue": "CPU核心数*2+10"
+    },
+    {
+      "name": "delay.thread.keep-alive-seconds",
+      "type": "java.lang.Integer",
+      "description": "空闲时间,单位(秒)",
+      "defaultValue": 60
+    },
+    {
+      "name": "delay.thread.queue-capacity",
+      "type": "java.lang.Integer",
+      "description": "缓冲队列",
+      "defaultValue": 2147483647
+    },
+    {
+      "name": "delay.thread.wait-for-tasks-to-complete-on-shutdown",
+      "type": "java.lang.Boolean",
+      "description": "等待所有任务都完成再继续销毁",
+      "defaultValue": false
+    },
+    {
+      "name": "delay.thread.await-termination-seconds",
+      "type": "java.lang.Integer",
+      "description": "线程池中任务的等待时间,单位(秒)",
+      "defaultValue": 0
+    }
+  ]
+}

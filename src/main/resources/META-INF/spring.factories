@@ -1,0 +1,7 @@
+# Auto Configure
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  io.github.delayed.queue.factory.DelayedQueueFactory,\
+  io.github.delayed.thread.factory.DefaultRunFactory,\
+  io.github.delayed.MainDelayedThreadPool,\
+  io.github.delayed.thread.pool.BranchDelayedThreadPool,\
+  io.github.delayed.InitializeDelayedQueue
