@@ -32,7 +32,7 @@ public class DelayedImpl<T> implements Delayed, Serializable {
     private final T data;
 
 
-    public DelayedImpl(long active, String id, T data) {
+    public DelayedImpl(long active, T data) {
         if (active < 0) {
             throw new DelayedException("the delay time cannot be less than 0");
         }
@@ -40,7 +40,7 @@ public class DelayedImpl<T> implements Delayed, Serializable {
             throw new DelayedException("business parameters cannot be empty");
         }
         this.active = TimeUnit.NANOSECONDS.convert(active, TimeUnit.SECONDS) + System.nanoTime();
-        this.id = (Objects.isNull(id) || id.length() <= 0) ? UUID.randomUUID().toString().replace("-", "") : id;
+        this.id = UUID.randomUUID().toString().replace("-", "");
         this.data = data;
     }
 

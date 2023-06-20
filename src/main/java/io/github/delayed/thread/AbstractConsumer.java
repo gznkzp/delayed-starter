@@ -31,19 +31,6 @@ public abstract class AbstractConsumer<T> {
         return abstractDelayedQueue.take();
     }
 
-    /**
-     * 推送延迟任务
-     *
-     * @param active 延迟时间,单位:S
-     * @param id     任务标识
-     * @param data   业务数据
-     * @return 任务标识
-     */
-    public String put(long active, String id, T data) {
-        DelayedImpl<T> delayed = new DelayedImpl<>(active, id, data);
-        abstractDelayedQueue.put(delayed);
-        return delayed.getId();
-    }
 
     /**
      * 推送延迟任务
@@ -53,7 +40,9 @@ public abstract class AbstractConsumer<T> {
      * @return 任务标识
      */
     public String put(long active, T data) {
-        return put(active, null, data);
+        DelayedImpl<T> delayed = new DelayedImpl<>(active, data);
+        abstractDelayedQueue.put(delayed);
+        return delayed.getId();
     }
 
 

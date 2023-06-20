@@ -9,7 +9,7 @@ import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.stream.Collectors;
 
 /**
@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
  **/
 public class CacheDelayedQueue<T> extends AbstractDelayedQueue<T> {
 
-    private final static Lock FILE_LOCK = new ReentrantLock();
+    private final static Lock WRITE_LOCK = new ReentrantReadWriteLock().writeLock();
 
 
     public CacheDelayedQueue(QueueObject queueObject) {
@@ -47,7 +47,7 @@ public class CacheDelayedQueue<T> extends AbstractDelayedQueue<T> {
 
 
     private void writeObject(File file, DelayedImpl<T> delayed) {
-        FILE_LOCK.lock();
+        WRITE_LOCK.lock();
         try (FileOutputStream fos = new FileOutputStream(file, true);
              ObjectOutputStream oos = new ObjectOutputStream(fos)) {
             FileChannel channel = fos.getChannel();
@@ -56,7 +56,7 @@ public class CacheDelayedQueue<T> extends AbstractDelayedQueue<T> {
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            FILE_LOCK.unlock();
+            WRITE_LOCK.unlock();
         }
     }
 
